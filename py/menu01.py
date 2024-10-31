@@ -1,9 +1,15 @@
+students = []
+
 def mainMenu():
     try:
-        response = int(input("\n\n----- MENU PRINCIPAL -----\n\n(1) GERENCIAR ESTUDANTES\n(2) GERENCIAR PROFESSORES\n(3) GERENCIAR DISCIPLINAS\n(4) GERENCIAR TURMAS\n(5) GERENCIAR MATRICULAS\n(9) SAIR\n\nINFORME A OPÇÃO DESEJADA: "))
+        response = int(input("\n----- MENU PRINCIPAL -----\n\n(1) GERENCIAR ESTUDANTES\n(2) GERENCIAR PROFESSORES\n(3) GERENCIAR DISCIPLINAS\n(4) GERENCIAR TURMAS\n(5) GERENCIAR MATRICULAS\n(9) SAIR\n\nINFORME A OPÇÃO DESEJADA: "))
         return response
     except ValueError:
-        print("\nDigite um número válido\n")
+        
+        print("\n===========================")
+        print("Digite um número válido")
+        print("===========================\n")
+        
         return None
 
 def operMenu():
@@ -15,39 +21,83 @@ def operMenu():
             
             match option:
                 case 1:
-                    response = int(input("\n\n----- [ESTUDANTES] MENU DE OPERAÇÕES -----\n\n(1) INCLUIR\n(2) LISTAR\n(3) ATUALIZAR\n(4) EXCLUIR\n(9) VOLTAR AO MENU PRINCIPAL\n\nINFORME A OPÇÃO DESEJADA: "))
+                    moreOptions("ESTUDANTES")
                 case 2: 
-                    response = int(input("\n\n----- [PROFESSORES] MENU DE OPERAÇÕES -----\n\n(1) INCLUIR\n(2) LISTAR\n(3) ATUALIZAR\n(4) EXCLUIR\n(9) VOLTAR AO MENU PRINCIPAL\n\nINFORME A OPÇÃO DESEJADA: "))
+                    moreOptions("PROFESSORES")
                 case 3: 
-                    response = int(input("\n\n----- [DISCIPLINAS] MENU DE OPERAÇÕES -----\n\n(1) INCLUIR\n(2) LISTAR\n(3) ATUALIZAR\n(4) EXCLUIR\n(9) VOLTAR AO MENU PRINCIPAL\n\nINFORME A OPÇÃO DESEJADA: "))
+                    moreOptions("DISCIPLINAS")
                 case 4: 
-                    response = int(input("\n\n----- [TURMAS] MENU DE OPERAÇÕES -----\n\n(1) INCLUIR\n(2) LISTAR\n(3) ATUALIZAR\n(4) EXCLUIR\n(9) VOLTAR AO MENU PRINCIPAL\n\nINFORME A OPÇÃO DESEJADA: "))
+                    moreOptions("TURMAS")
                 case 5: 
-                    response = int(input("\n\n----- [MATRÍCULAS] MENU DE OPERAÇÕES -----\n\n(1) INCLUIR\n(2) LISTAR\n(3) ATUALIZAR\n(4) EXCLUIR\n(9) VOLTAR AO MENU PRINCIPAL\n\nINFORME A OPÇÃO DESEJADA: "))
+                    moreOptions("MATRÍCULAS")
                 case 9:
                     print("Até logo")
                     break
                 case _:
+                    print("\n===========================")
                     print("Digite um número válido")
+                    print("===========================\n")
                     continue
-
-            moreOptions(response)
         except ValueError:
-            print("\nDigite um número válido\n")
+            print("\n===========================")
+            print("Digite um número válido")
+            print("===========================\n")
 
-def moreOptions(response):
-    match response:
-        case 1:
-            print("\n\n===== INCLUIR =====\n\nFinalizando a aplicação...\n")
-        case 2:
-            print("\n\n===== LISTAR =====\n\nFinalizando a aplicação...\n")
-        case 3:
-            print("\n\n===== ATUALIZAÇÃO =====\n\nFinalizando a aplicação...\n")
-        case 4:
-            print("\n\n===== EXCLUIR =====\n\nFinalizando a aplicação...\n")
-        case 9:
-            operMenu()
-        case _:
-            print("\nDigite um número válido\n")
+def moreOptions(type):
+    while True:
+        try:
+            
+            if(type == "PROFESSORES" or type == "DISCIPLINAS" or type== "TURMAS" or type == "MATRÍCULAS"):
+                print("\nEM DESENVOLVIMENTO...")
+                operMenu()
+            else:
+            
+                print(f"\n----- [{type}] MENU DE OPERAÇÕES -----")
+                response = int(input("(1) INCLUIR\n(2) LISTAR\n(3) ATUALIZAR\n(4) EXCLUIR\n(9) VOLTAR AO MENU PRINCIPAL\n\nINFORME A OPÇÃO DESEJADA: "))
+                
+                
+                match response:
+                    case 1:
+                        name = input("\n\n===== INCLUSÃO =====\n\nInforme o nome do estudante:\n-- ")
+                        students.append(name)
+                        input("Estudante incluído com sucesso! Pressione ENTER para continuar")
+                    
+                        
+                    case 2:
+                        print("\n\n===== LISTAGEM =====\n\n")
+                        
+                        if(len(students) == 0):
+                            print("Não há estudantes cadastrados\n")
+                        else:
+                            for i in range(len(students)):
+                                print(" - ", students[i])
+                            
+                        input("Pressione ENTER para continuar")
+                        
+                    case 3:
+                        print("\n\n===== ATUALIZAÇÃO =====\n")
+                        
+                        print("\nEM DESENVOLVIMENTO...")
+                    
+                        input("Pressione ENTER para continuar")
+                        
+                    case 4:
+                        print("\n\n===== EXCLUSÃO =====\n")
+                        
+                        print("\nEM DESENVOLVIMENTO...")
+                
+                        input("Pressione ENTER para continuar")
+                        
+                    case 9:
+                        return 
+                    case _:
+                        print("\n===========================")
+                        print("Digite um número válido")
+                        print("===========================\n")
+                        
+        except ValueError:
+            print("\n===========================")
+            print("Digite um número válido")
+            print("===========================\n")
 
 operMenu()
