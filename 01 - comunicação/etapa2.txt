@@ -1,0 +1,24 @@
+Qual o fluxo comunicacional: vertical (ascendente ou descendente); horizontal ou informal observado na empresa?
+-- fluxo descendente
+
+Quais os canais de comunicação internos e externos que a empresa utiliza?
+-- a Empresa possui o zumder online, um site que encontra-se disponível como página inicial em todos os computadores corporativos e aparece em diversas Televisões espalhadas pela empresa. Nesse zumder, as principais notícias acerca da empresa  e decisões são divulgadas, bem como parabenizações a colaboradores, setores, eventos, histórias e valores. 
+Quais os problemas comunicacionais existentes?
+--como a comunicação é descendente as decisões acabam chegando em cima da hora para  a área produtiva dps setores, ocasionando retrabalho.
+Quais foram as soluções para os problemas identificados? Caso não as encontre, elabore as possíveis soluções.
+-- Um das soluções foi o zumder, porém, o site é utilizado para noticias globais, inclusive está em inglês. Visto isso, irei elaborar algumas soluções possíveis para os problemas:
+-- implementação do método Scruum com reuniões diárias para atualizações e discuções entre os setores de uma área.
+
+A partir dessas informações, elabore um texto dissertativo de 10 a 15 linhas com o título “A comunicação empresarial” unindo todas as informações sobre a comunicação da empresa escolhida.
+
+**A Comunicação Empresarial: Desafios e Soluções**
+
+A empresa em questão adota o Zunder Online como seu principal canal de comunicação interna. Este site, acessível como página inicial em todos os computadores corporativos e exibido em várias televisões na empresa, é utilizado para divulgar notícias relevantes, decisões importantes, parabenizações a colaboradores e informações sobre eventos, histórias e valores da organização. No entanto, o modelo de comunicação adotado é descendente, o que gera problemas significativos. As decisões frequentemente chegam à área produtiva em cima da hora, resultando em retrabalho e ineficiências operacionais.
+
+Embora o Zunder seja uma ferramenta valiosa, sua utilização para notícias globais, muitas vezes em inglês, pode dificultar a compreensão por parte de todos os colaboradores. Para melhorar a eficácia da comunicação, uma possível solução é a implementação do método Scrum, que envolve reuniões diárias entre os setores para atualizações e discussões. Essa abordagem promoveria um ambiente mais colaborativo e ágil, garantindo que todos os colaboradores estejam alinhados e informados sobre as decisões em tempo real. Com isso, a empresa poderá reduzir retrabalhos e aumentar a eficiência, criando um ambiente de trabalho mais produtivo e motivador.
+
+
+Salve esse texto e as informações sobre a empresa em um documento de texto (Word).
+
+
+Após escrever o texto, desenvolva um infográfico com as informações sobre a comunicação organizacional da empresa. Utilize o site Canva para elaborar o infográfico e salve-o junto com o texto elaborado.
