@@ -1,0 +1,44 @@
+=== IDEIAS DESENVOLVIDAS ===
+1: É possível incluir referencias a filmes e séries populares, além de memes conhecidos nos posts a fim de provocar humor e identificação do publico alvo, além de uma linguagem mais acessível.
+2: é possível no perfil da empresa incluir publicações acerca de temas importantes para os colaboradores e para o mundo como seu papel nas ODS, ensinar técnicas de trabalho produtivo, etc.
+3: para aumentar a interação com seguidores é necessa´rio causar identificação neles e tambpem fazer chaamdas ao público nos seus posts, por exemplo "comente 'uau' se esse post te ajudou", etc.
+
+==== RESPOSTAS ====
+
+a) Uma análise do público-alvo, considerando suas características demográficas, interesses e comportamentos on-line.
+r: Como é uma mepresa de comunicação digital é inevitável que seu público seja dos 18 aos 30 anos. Haja vista isso, esse público geralmente possui, nas redes sociais, o comportamento de publicar posts acerca de sua vida e dos aconteciemntos do mundo, mostrando suas opiniões sobre as questões atuais e aconteciemntos que, usando uma definição informal, 'acabaram de sair do forno'. É um público amplamente antenado e possui interesse em redes sociais, video games, streaming, música e vida fitness.
+
+b) Sugestões de linguagem, tom e estilo de escrita mais adequados para se comunicar com o público-alvo. 
+r: É necessaprio que a linguagem seja mais jovial, por vezes, é possível incluir referencias a filmes e séries populares, além de memes conhecidos nos posts a fim de provocar humor e identificação do publico alvo. Lingueagem 'engessada' não dá certo com esse tipo de público.
+
+c) Sugestões de posts ou conteúdos que exemplifiquem as mudanças propostas.
+r: sugestões:
+
+
+1. Post de Engajamento - “Aconteceu no Mundo”
+Objetivo: Estimular interação e posicionar a marca como atualizada e antenada com o que acontece no mundo. Formato: Imagem ou vídeo curto + CTA (chamada para ação)
+
+Texto:
+"🚨 Notícia quente: [evento importante do momento]! 😱 O que vocês acham disso? Deixe sua opinião nos comentários! 💬 E não se esqueça de compartilhar com aquele amigo que vai pirar! #FiqueLigado #NomeDaEmpresa"
+Análise: Esse tipo de post se alinha com o comportamento do público de compartilhar informações sobre acontecimentos atuais e participar ativamente nas discussões sobre temas populares. A combinação de emojis e a linguagem direta contribuem para engajamento imediato.
+
+2. Post de Entretenimento - “Desafio do Mês”
+Objetivo: Criar desafios interativos que estimulem a participação ativa do público. Formato: Vídeo + CTA(call to action)
+
+Texto:
+"🎮 Você é o mestre dos games? Então, chegou a sua hora de brilhar! 💥 Participe do Desafio Digital da Semana: [detalhes do desafio relacionado ao universo dos jogos ou streaming]! 📱 Poste seu resultado usando a hashtag #Desafio[NomeDaMarca] e marque a gente! Os melhores vídeos ganham um prêmio super exclusivo! 🏆 #DesafioAceito #Jogos #DigitalLife"
+Análise: Os jovens de 18 a 30 anos adoram interagir em desafios e competições, principalmente quando eles envolvem uma recompensa. O uso de palavras como “mestre”, “brilhar”, e “exclusivo” vai fazer com que o público se sinta valorizado e parte de uma comunidade engajada.
+
+3. Post Educativo - "Dicas para Criar Conteúdo nas Redes Sociais"
+Objetivo: Fornecer informações úteis e práticas, agregando valor ao público. Formato: Infográfico + Carrossel de Imagens
+
+Texto:
+"💡 Você sabia? Criar conteúdo no Insta é mais do que postar uma foto bonita! 📸 Aqui vão 5 dicas essenciais para bombar seu perfil e engajar sua galera! Swipe 👉 para ver todas! 👀 1️⃣ Seja autêntico 2️⃣ Use trends ao seu favor... e muito mais!"
+Análise: Jovens adultos são ávidos por aprender e melhorar suas habilidades digitais, especialmente quando se trata de melhorar sua presença online. Este tipo de post oferece valor imediato e engaja, então a empresa passa a atribuir valor no seu prórpio nicho, ao mesmo tempo que traz um tom de autoridade amigável e acessível.
+
+
+d) Estratégias para aumentar a interação com os seguidores, como perguntas, enquetes, desafios, entre outros.
+r: Uma estratégia é fazer posts diários nos stories do instagram com enquetes acerca do conteúdo, das preferencias do público, de acontecimentos da atualidade, até mesmo enquetes engraçadas para descontrair, caixinha de perguntas, desafios que engajam os seguidores valendo prêmios, bem como rifas, movimento de #tags, e lives de entretenimento valendo premiações exclusivas.
+
+e) Métricas para avaliar o sucesso das mudanças implementadas e possíveis ajustes futuros.
+r: A conta corporativa no instagram, por exemplo, mostra insights acerca da evolução da interação do público com o tempo, os comentários, os 'likes'. Esses insghts são enviados diretamente pela Meta e é uma métrica muito boa para avaliar o sucesso das mudanças propostas.
