@@ -3,26 +3,87 @@ students = []
 def validateCod(cod):
     if cod.isdigit():
         return True
-    else:
-        print("Erro ao validar código! Digite um código válido")
-        return False
+   
+    print("Erro ao validar código! Digite um código válido")
+    return False
 
 # Função para conferir se o CPF já está cadastrado, assim o mesmo CPF não pode ser cadastrado duas vezes
-def findCpf(cpf):
+def foundCpf(cpf):
     for i in students:
         if i['cpf'] == cpf:
             print("Não é possível cadastrar o mesmo CPF duas vezes")
-            return False
-    return True
+            return True
+    return False
     
 # Função para procurar se o código já está cadastrado, não deixando cadastrar o mesmo código duas vezes
-def findCod(cod):
+def foundCod(cod):
     for i in students:
         if i['codigo'] == cod:
             print("Não é possível cadastrar o mesmo código duas vezes")
-            return False
-    return True  
+            return True
+    return False 
+     
 
+# função para criar um estudante
+def createStudent(cod, name, cpf):
+   
+    if foundCpf(cpf):
+        return 
+
+    currStudent = {
+        'codigo': cod,
+        'nome': name,
+        'cpf': cpf
+    }
+    students.append(currStudent)
+
+
+# função para listar todos os estudantes
+def listingStudents():
+    
+    print("\n\n===== LISTAGEM =====\n\n")
+    if(len(students) == 0):
+        print("Não há estudantes cadastrados\n")
+    else:
+        for i in range(len(students)):
+            print(" - ", students[i])
+   
+def editStudent(codStudentToEdit, newCod, newName, newCpf):
+    
+    # encontrando e atualizando o estudante
+    studentFound = False
+    for i in students:
+        if i['codigo'] == codStudentToEdit:
+            i['codigo'] = newCod
+            i['nome'] = newName
+            i['cpf'] = newCpf
+            studentFound = True
+            print('Atualização realizada com sucesso!')
+            break
+    
+    if not studentFound:
+        print("Estudante com o código informado não encontrado.")            
+            
+def deleteStudent():
+    
+    print("\n\n===== EXCLUSÃO =====\n")
+    
+    codStudentToRemove = input("Digite o código do estudante que deseja excluir\n--")
+    if validateCod(codStudentToRemove):
+        codStudentToRemove = int(codStudentToRemove)
+    
+        studentFound = False
+        for i in students:
+            if i['codigo'] == codStudentToRemove:
+                students.remove(i)
+                studentFound = True
+                print("\nEstudante excluído com sucesso")
+                break
+        # vebdo se o estudante não foi encontrado
+        if not studentFound:
+            print("Estudante com o código informado não encontrado.")
+
+# essa função mostra o menu principal
 def mainMenu():
     try:
         response = int(input("\n----- MENU PRINCIPAL -----\n\n(1) GERENCIAR ESTUDANTES\n(2) GERENCIAR PROFESSORES\n(3) GERENCIAR DISCIPLINAS\n(4) GERENCIAR TURMAS\n(5) GERENCIAR MATRICULAS\n(9) SAIR\n\nINFORME A OPÇÃO DESEJADA: "))
@@ -33,6 +94,7 @@ def mainMenu():
         print("===========================\n")
         return None
 
+# esta função mostra o menu de operações
 def operMenu():
     while True:
         try:
@@ -64,6 +126,7 @@ def operMenu():
             print("Digite um número válido")
             print("===========================\n")
 
+# essa função mostra o menu detalhado das opções
 def moreOptions(type):
     while True:
         try:
@@ -78,33 +141,26 @@ def moreOptions(type):
                     
                     # Cadastrar estudante
                     case 1:
+                        
                         cod = input("\n\n===== INCLUSÃO =====\n\nInforme o código do estudante:\n-- ")
-                    
+                        
+                        # valido se o código é um número
                         if validateCod(cod):
                             cod = int(cod)
                             
-                            if findCod(cod):
+                            if not foundCod(cod):
                                 name = input("\nInforme o nome do estudante:\n-- ")
                                 cpf = input("\nInforme o CPF do estudante:\n--")
                                 
-                                if(findCpf(cpf)):
-    
-                                    currStudent = {}
-                                    currStudent['codigo'] = cod
-                                    currStudent['nome'] = name
-                                    currStudent['cpf'] = cpf
-                                    students.append(currStudent)
-                                    
+                                # valido se o cpf já está em uso
+                                if not foundCpf(cpf):
+                                    createStudent(cod, name, cpf)
                                     input("Estudante incluído com sucesso! Pressione ENTER para continuar")
                                 
                     # listando todos os estudantes existentes 
                     case 2:
-                        print("\n\n===== LISTAGEM =====\n\n")
-                        if(len(students) == 0):
-                            print("Não há estudantes cadastrados\n")
-                        else:
-                            for i in range(len(students)):
-                                print(" - ", students[i])
+                        
+                        listingStudents()
                             
                         input("Pressione ENTER para continuar")
                     
@@ -123,44 +179,21 @@ def moreOptions(type):
                             if validateCod(newCod):
                                 newCod = int(newCod)
                                 
-                                # encontrando e atualizando o estudante
-                                studentFound = False
-                                for i in students:
-                                    if i['codigo'] == codStudentToEdit:
-                                        i['codigo'] = newCod
-                                        i['nome'] = newName
-                                        i['cpf'] = newCpf
-                                        studentFound = True
-                                        print('Atualização realizada com sucesso!')
-                                        break
-                                
-                                if not studentFound:
-                                    print("Estudante com o código informado não encontrado.")
-                            
+                            if not foundCpf(newCpf):
+                                editStudent(codStudentToEdit, newCod, newName, newCpf)
+                        
                         input("Pressione ENTER para continuar")
                         
                     # Excluir estudante
                     case 4:
-                        print("\n\n===== EXCLUSÃO =====\n")
-                        codStudentToRemove = input("Digite o código do estudante que deseja excluir\n--")
-                        if validateCod(codStudentToRemove):
-                            codStudentToRemove = int(codStudentToRemove)
-                        
-                            studentFound = False
-                            for i in students:
-                                if i['codigo'] == codStudentToRemove:
-                                    students.remove(i)
-                                    studentFound = True
-                                    print("\nEstudante excluído com sucesso")
-                                    break
-                            # vebdo se o estudante não foi encontrado
-                            if not studentFound:
-                                print("Estudante com o código informado não encontrado.")
-                        
+                       
+                        deleteStudent()
                         input("Pressione ENTER para continuar")
                         
                     case 9:
+                        
                         return 
+                    
                     case _:
                         print("\n===========================")
                         print("Digite um número válido")
