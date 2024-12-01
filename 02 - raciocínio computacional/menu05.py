@@ -1,242 +1,185 @@
 import json
 import os
 
-students = []
+# Estruturas de dados globais
+students, teachers, disciplines, classes, registrations = [], [], [], [], []
 
+# JSON final
+data = {
+    'students': students,
+    'teachers': teachers,
+    'disciplines': disciplines,
+    'classes': classes,
+    'registrations': registrations
+}
+
+# Função para carregar dados do arquivo JSON
+def loadJson():
+    global students, teachers, disciplines, classes, registrations
+    file_path = "data.json"
+    if os.path.exists(file_path):
+        with open(file_path, "r", encoding="utf-8") as file:
+            loaded_data = json.load(file)
+            students[:] = loaded_data.get('students', [])
+            teachers[:] = loaded_data.get('teachers', [])
+            disciplines[:] = loaded_data.get('disciplines', [])
+            classes[:] = loaded_data.get('classes', [])
+            registrations[:] = loaded_data.get('registrations', [])
+            print("Dados carregados com sucesso!")
+    else:
+        print("Arquivo JSON não encontrado. Um novo será criado ao salvar dados.")
+
+# Função para salvar os dados no arquivo JSON
 def updateJson():
+    with open("data.json", "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=4, ensure_ascii=False)
+    print("Dados salvos no arquivo JSON.")
 
-    f_path = "students.json"
-
-    if os.path.exists(f_path):
-        print("O arquivo já existe. Atualizando os dados...")
-
-        # Carrega os dados existentes e adiciona novos dados
-        with open(f_path, "r") as f:
-            existing_data = json.load(f)
-        
-        # Adiciona os dados de 'students' aos dados existentes
-        existing_data.extend(students)
-        
-        # Salva todos os dados de volta no arquivo
-        with open(f_path, "w", encoding="utf-8") as f:
-            json.dump(existing_data, f, indent=4, ensure_ascii=False)
-    else:
-        print("O arquivo não existe. Criando um novo arquivo...")
-
-        # Cria um novo arquivo e salva os dados de 'students'
-        with open(f_path, "w") as f:
-            json.dump(students, f, indent=4, ensure_ascii=False)
-
-    print("Arquivo JSON atualizado ou criado com sucesso!")
-
-    # criar um novo arquivo
-    with open(f_path, "w") as f:
-        json.dump(students, f)
-
-    print("Arquivo JSON atualizado ou criado com sucesso!")
-
-def validateCod(cod):
-    if cod.isdigit():
-        return True
-   
-    print("Erro ao validar código! Digite um código válido")
-    return False
-
-# função para conferir se o CPF já está cadastrado, assim o mesmo CPF não pode ser cadastrado duas vezes
-def foundCpf(cpf):
-    for i in students:
-        if i['cpf'] == cpf:
-            print("Não é possível cadastrar o mesmo CPF duas vezes")
+# Função para verificar CPF duplicado
+def isFoundCpf(cpf, dataset):
+    for item in dataset:
+        if item['cpf'] == cpf:
+            print("CPF já cadastrado.")
             return True
     return False
-    
-# função para procurar se o código já está cadastrado, não deixando cadastrar o mesmo código duas vezes
-def foundCod(cod):
-    for i in students:
-        if i['codigo'] == cod:
-            print("Não é possível cadastrar o mesmo código duas vezes")
+
+# Função para verificar código duplicado
+def isFoundCod(cod, dataset):
+    for item in dataset:
+        if item['codigo'] == cod:
             return True
-    return False 
-     
+    return False
 
-# função para criar um estudante
-def createStudent(cod, name, cpf):
-   
-    if foundCpf(cpf):
-        return 
+# Validação de código
+def validateCod(cod, dataset, operation):
+    if not cod.isdigit():
+        print("Código inválido! Deve ser numérico.")
+        return False
+    cod = int(cod)
+    if operation == 'create' and isFoundCod(cod, dataset):
+        print("Código já existente! Operação cancelada.")
+        return False
+    elif operation in ('edit', 'delete') and not isFoundCod(cod, dataset):
+        print("Código não encontrado!")
+        return False
+    return True
 
-    currStudent = {
-        'codigo': cod,
-        'nome': name,
-        'cpf': cpf
-    }
-    students.append(currStudent)
+# Função para criar um novo registro
+def create(dataset, fields):
+    cod = input("Digite o código:\n-- ")
+    if validateCod(cod, dataset, 'create'):
+        cod = int(cod)
+        data_entry = {'codigo': cod}
+        for field in fields:
+            value = input(f"Digite o {field}:\n-- ")
+            if field == 'cpf' and isFoundCpf(value, dataset):
+                return
+            data_entry[field] = value
+        dataset.append(data_entry)
+        updateJson()
+        print(f"{fields[0].capitalize()} cadastrado(a) com sucesso!")
 
+# Função para listar registros
+def listing(dataset, fields):
+    if not dataset:
+        print("Nenhum registro encontrado.")
+        return
+    print("\n===== REGISTROS =====")
+    for i, item in enumerate(dataset, start=1):
+        print(f"{i}.", ", ".join(f"{field.capitalize()}: {item[field]}" for field in fields))
 
-# função para listar todos os estudantes
-def listingStudents():
-    
-    print("\n\n===== LISTAGEM =====\n\n")
-    if(len(students) == 0):
-        print("Não há estudantes cadastrados\n")
-    else:
-        for i in range(len(students)):
-            print(" - ", students[i])
-   
-def editStudent(codStudentToEdit, newCod, newName, newCpf):
-    
-    # encontrando e atualizando o estudante
-    studentFound = False
-    for i in students:
-        if i['codigo'] == codStudentToEdit:
-            i['codigo'] = newCod
-            i['nome'] = newName
-            i['cpf'] = newCpf
-            studentFound = True
-            print('Atualização realizada com sucesso!')
-            break
-    
-    if not studentFound:
-        print("Estudante com o código informado não encontrado.")            
-            
-def deleteStudent():
-    
-    print("\n\n===== EXCLUSÃO =====\n")
-    
-    codStudentToRemove = input("Digite o código do estudante que deseja excluir\n--")
-    if validateCod(codStudentToRemove):
-        codStudentToRemove = int(codStudentToRemove)
-    
-        studentFound = False
-        for i in students:
-            if i['codigo'] == codStudentToRemove:
-                students.remove(i)
-                studentFound = True
-                print("\nEstudante excluído com sucesso")
-                break
-        # vebdo se o estudante não foi encontrado
-        if not studentFound:
-            print("Estudante com o código informado não encontrado.")
-
-# essa função mostra o menu principal
-def mainMenu():
-    try:
-        response = int(input("\n----- MENU PRINCIPAL -----\n\n(1) GERENCIAR ESTUDANTES\n(2) GERENCIAR PROFESSORES\n(3) GERENCIAR DISCIPLINAS\n(4) GERENCIAR TURMAS\n(5) GERENCIAR MATRICULAS\n(9) SAIR\n\nINFORME A OPÇÃO DESEJADA: "))
-        return response
-    except ValueError:
-        print("\n===========================")
-        print("Digite um número válido")
-        print("===========================\n")
-        return None
-
-# esta função mostra o menu de operações
-def operMenu():
-    while True:
-        try:
-            option = mainMenu()
-            if option is None:
-                continue  
-
-            match option:
-                case 1:
-                    moreOptions("ESTUDANTES")
-                case 2: 
-                    moreOptions("PROFESSORES")
-                case 3: 
-                    moreOptions("DISCIPLINAS")
-                case 4: 
-                    moreOptions("TURMAS")
-                case 5: 
-                    moreOptions("MATRÍCULAS")
-                case 9:
-                    print("Até logo")
-                    break
-                case _:
-                    print("\n===========================")
-                    print("Digite um número válido")
-                    print("===========================\n")
+# Função para editar registros
+def edit(dataset, fields):
+    cod = input("Digite o código do registro a ser editado:\n-- ")
+    if not validateCod(cod, dataset, 'edit'):
+        return
+    cod = int(cod)
+    for item in dataset:
+        if item['codigo'] == cod:
+            for field in fields:
+                if field == 'codigo':
                     continue
-        except ValueError:
-            print("\n===========================")
-            print("Digite um número válido")
-            print("===========================\n")
+                value = input(f"Digite o novo {field} (deixe vazio para manter o atual):\n-- ")
+                if value:
+                    if field == 'cpf' and isFoundCpf(value, dataset):
+                        return
+                    item[field] = value
+            updateJson()
+            print("Registro atualizado com sucesso!")
+            return
+    print("Registro não encontrado!")
 
-# essa função mostra o menu detalhado das opções
-def moreOptions(type):
+# Função para excluir registros
+def delete(dataset):
+    cod = input("Digite o código do registro a ser excluído:\n-- ")
+    if not validateCod(cod, dataset, 'delete'):
+        return
+    cod = int(cod)
+    for item in dataset:
+        if item['codigo'] == cod:
+            dataset.remove(item)
+            updateJson()
+            print("Registro excluído com sucesso!")
+            return
+    print("Registro não encontrado!")
+
+# Menu principal
+def mainMenu():
     while True:
         try:
-            if(type == "PROFESSORES" or type == "DISCIPLINAS" or type == "TURMAS" or type == "MATRÍCULAS"):
-                print("\nEM DESENVOLVIMENTO...")
-                operMenu()
+            print("\n===== MENU PRINCIPAL =====")
+            print("(1) Gerenciar Estudantes")
+            print("(2) Gerenciar Professores")
+            print("(3) Gerenciar Disciplinas")
+            print("(4) Gerenciar Turmas")
+            print("(5) Gerenciar Matrículas")
+            print("(9) Sair")
+            option = int(input("Escolha uma opção:\n-- "))
+            if option == 9:
+                print("Saindo...")
+                break
+            elif option in range(1, 6):
+                subMenu(option)
             else:
-                print(f"\n----- [{type}] MENU DE OPERAÇÕES -----")
-                response = int(input("(1) INCLUIR\n(2) LISTAR\n(3) ATUALIZAR\n(4) EXCLUIR\n(9) VOLTAR AO MENU PRINCIPAL\n\nINFORME A OPÇÃO DESEJADA: "))
-                
-                match response:
-                    
-                    # Cadastrar estudante
-                    case 1:
-                        
-                        cod = input("\n\n===== INCLUSÃO =====\n\nInforme o código do estudante:\n-- ")
-                        
-                        # valido se o código é um número
-                        if validateCod(cod):
-                            cod = int(cod)
-                            
-                            if not foundCod(cod):
-                                name = input("\nInforme o nome do estudante:\n-- ")
-                                cpf = input("\nInforme o CPF do estudante:\n--")
-                                
-                                # valido se o cpf já está em uso
-                                if not foundCpf(cpf):
-                                    createStudent(cod, name, cpf)
-                                    input("Estudante incluído com sucesso! Pressione ENTER para continuar")
-                                
-                    # listando todos os estudantes existentes 
-                    case 2:
-                        
-                        listingStudents()
-                            
-                        input("Pressione ENTER para continuar")
-                    
-                    # atualizar dados do estudante selecionado
-                    case 3:
-                        print("\n\n===== ATUALIZAÇÃO =====\n")
-                        codStudentToEdit = input("Digite o código do estudante que deseja atualizar\n--")
-                        
-                        if validateCod(codStudentToEdit):
-                            codStudentToEdit = int(codStudentToEdit)
-                        
-                            newCod = input("Digite o novo código:\n--")
-                            newName = input("Digite o novo nome:\n--")
-                            newCpf = input("Digite o novo CPF para o estudante:\n--")
-                            
-                            if validateCod(newCod):
-                                newCod = int(newCod)
-                                
-                            if not foundCpf(newCpf):
-                                editStudent(codStudentToEdit, newCod, newName, newCpf)
-                        
-                        input("Pressione ENTER para continuar")
-                        
-                    # Excluir estudante
-                    case 4:
-                       
-                        deleteStudent()
-                        input("Pressione ENTER para continuar")
-                        
-                    case 9:
-                        
-                        return 
-                    
-                    case _:
-                        print("\n===========================")
-                        print("Digite um número válido")
-                        print("===========================\n")
-                        
+                print("Opção inválida! Tente novamente.")
         except ValueError:
-            print("\n===========================")
-            print("Digite um número válido")
-            print("===========================\n")
+            print("Entrada inválida! Por favor, insira um número.")
 
-operMenu()
+# Submenu para cada categoria
+def subMenu(option):
+    categories = {
+        1: ('students', students, ['nome', 'cpf']),
+        2: ('teachers', teachers, ['nome', 'cpf']),
+        3: ('disciplines', disciplines, ['nome']),
+        4: ('classes', classes, ['codigoProfessor', 'codigoMateria']),
+        5: ('registrations', registrations, ['codigoEstudante', 'codigoTurma'])
+    }
+    category, dataset, fields = categories[option]
+    while True:
+        try:
+            print(f"\n===== GERENCIAR {category.upper()} =====")
+            print("(1) Incluir")
+            print("(2) Listar")
+            print("(3) Editar")
+            print("(4) Excluir")
+            print("(9) Voltar ao menu principal")
+            action = int(input("Escolha uma opção:\n-- "))
+            if action == 9:
+                break
+            elif action == 1:
+                create(dataset, fields)
+            elif action == 2:
+                listing(dataset, fields)
+            elif action == 3:
+                edit(dataset, fields)
+            elif action == 4:
+                delete(dataset)
+            else:
+                print("Opção inválida! Tente novamente.")
+        except ValueError:
+            print("Entrada inválida! Por favor, insira um número.")
+
+# Execução do programa
+if __name__ == "__main__":
+    loadJson()
+    mainMenu()

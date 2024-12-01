@@ -1,0 +1,30 @@
+{
+    "students": [
+        {
+            "codigo": 1,
+            "nome": "kaik",
+            "cpf": "1"
+        }
+    ],
+    "teachers": [
+        {
+            "codigo": 1,
+            "nome": "nini",
+            "cpf": "12"
+        }
+    ],
+    "disciplines": [
+        {
+            "codigo": 1,
+            "nome": "bio"
+        }
+    ],
+    "classes": [],
+    "registrations": [
+        {
+            "codigo": 1,
+            "codigoEstudante": "2",
+            "codigoTurma": "3"
+        }
+    ]
+}
