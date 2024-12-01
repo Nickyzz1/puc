@@ -4,6 +4,11 @@
             "codigo": 1,
             "nome": "kaik",
             "cpf": "1"
+        },
+        {
+            "codigo": 2,
+            "nome": "nico",
+            "cpf": "321"
         }
     ],
     "teachers": [
@@ -19,12 +24,12 @@
             "nome": "bio"
         }
     ],
-    "classes": [],
-    "registrations": [
+    "classes": [
         {
             "codigo": 1,
-            "codigoEstudante": "2",
-            "codigoTurma": "3"
+            "codigoProfessor": "23",
+            "codigoMateria": "23"
         }
-    ]
+    ],
+    "registrations": []
 }

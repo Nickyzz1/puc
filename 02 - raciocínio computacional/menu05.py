@@ -106,8 +106,8 @@ def listing(dataset, fields):
         return
     
     print("\n===== REGISTROS =====")
-    for i, item in enumerate(dataset, start=1):
-        print(f"Item {i} : ", ", ".join(f"{field.capitalize()}: {item[field]}" for field in fields))
+    for i, item in enumerate(dataset):
+        print(f"Item {i} : código: {item['codigo']}, " + ", ".join(f"{field.capitalize()}: {item[field]}" for field in fields))
 
 # função para editar os registros
 def edit(dataset, fields):
@@ -164,7 +164,7 @@ def mainMenu():
             print("(9) Sair")
             option = int(input("Escolha uma opção:\n-- "))
             if option == 9:
-                print("Saindo...")
+                print("Até logo!")
                 break
             elif option in range(1, 6): # verific mais rapidamente o parametro
                 operMenu(option)
